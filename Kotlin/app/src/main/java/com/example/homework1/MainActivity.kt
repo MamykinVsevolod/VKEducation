@@ -82,52 +82,54 @@ fun MyScreenContent() {
                 .fillMaxWidth()
                 .fillMaxHeight(0.92f)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            ) {
-                LazyColumn(
+            Box {
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth(0.33f)
-                        .fillMaxHeight(),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                        .fillMaxWidth()
+                        .fillMaxHeight()
                 ) {
-                    itemsIndexed(
-                        items = numbers.value,
-                        key = { _, item -> item }
-                    ) { index, number ->
-                        SquareCard(number, index
-                        )
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth(0.33f)
+                            .fillMaxHeight(),
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                    ) {
+                        itemsIndexed(
+                            items = numbers.value,
+                            key = { _, item -> item }
+                        ) { index, number ->
+                            SquareCard(number, index)
+                        }
                     }
-                }
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth(0.66f)
-                        .fillMaxHeight(),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
-                ) {
-                    itemsIndexed(
-                        items = numbers2.value,
-                        key = { _, item -> item }
-                    ) { index, number ->
-                        SquareCard(number, index)
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth(0.66f)
+                            .fillMaxHeight(),
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                    ) {
+                        itemsIndexed(
+                            items = numbers2.value,
+                            key = { _, item -> item }
+                        ) { index, number ->
+                            SquareCard(number, index)
+                        }
                     }
-                }
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth(0.99f)
-                        .fillMaxHeight(),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
-                ) {
-                    itemsIndexed(
-                        items = numbers3.value,
-                        key = { _, item -> item }
-                    ) { index, number ->
-                        SquareCard(number, index)
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth(0.99f)
+                            .fillMaxHeight(),
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                    ) {
+                        itemsIndexed(
+                            items = numbers3.value,
+                            key = { _, item -> item }
+                        ) { index, number ->
+                            SquareCard(number, index)
+                        }
                     }
                 }
             }
+
         }
     }
 
