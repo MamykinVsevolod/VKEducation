@@ -45,6 +45,8 @@ import androidx.compose.ui.unit.dp
 
 fun MyScreen() {}
  */
+
+var counting = 0
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,6 +139,7 @@ fun MyScreenContent() {
             Button(
                 onClick = {
                     counter.value++;
+                    counting++;
                     if (counter.value % 3 == 1)
                         numbers.value = numbers.value + (counter.value)
                     if (counter.value % 3 == 2)
@@ -179,7 +182,7 @@ fun MyScreenContent() {
 }
 @Composable
 fun SquareCard(number: Int, index: Int) {
-    val backgroundColor = if (index % 2 != 0) Color.Red else Color.Blue
+    val backgroundColor = if (counting% 2 == 0) Color.Red else Color.Blue
 
     Box(
         modifier = Modifier
