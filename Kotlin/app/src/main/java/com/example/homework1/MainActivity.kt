@@ -145,7 +145,7 @@ fun MyScreenContent() {
     } else {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.92f)) {
+            .fillMaxHeight(0.85f)) {
             item {
                 Row(
                     modifier = Modifier
