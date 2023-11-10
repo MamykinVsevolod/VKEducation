@@ -15,50 +15,87 @@
 
 </head>
 
-
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top my-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AskMe!</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                    <button class="btn btn-outline-light " type="submit">Поиск</button>
-                </form>
-                <div class="row my-avatar-settings-log">
-                    <div class="col-4 my-avatar">
-                        <img src="../static/Курису.png" height="50px" width="50px">
-                    </div>
-                    <div class="col-8">
-                        <div class="row my-name">
-                            <p> Kurisu </p>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark my-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">AskMe!</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                        <button class="btn btn-outline-light " type="submit">Поиск</button>
+                    </form>
+                    <div class="row my-avatar-settings-log">
+                        <div class="col-4 my-avatar">
+                            <img src="../static/Курису.png" height="50px" width="50px">
                         </div>
-                        <div class="row my-settings-log">
-                            <div class="col-6">
-                                <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
-                                <button type="button" class="btn btn-outline-light my-btn-settings">Настройки</button>
+                        <div class="col-8">
+                            <div class="row my-name">
+                                <p> Kurisu </p>
                             </div>
-                            <div class="col-6">
-                                <!--<a class="my-link-log" href="#">Вход</a> -->
-                                <button type="button" class="btn btn-outline-light my-btn-log">Вход</button>
-                            </div>
+                            <div class="row my-settings-log">
+                                <div class="col-6">
+                                    <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
+                                    <button type="button"
+                                        class="btn btn-outline-light my-btn-settings">Настройки</button>
+                                </div>
+                                <div class="col-6">
+                                    <!--<a class="my-link-log" href="#">Вход</a> -->
+                                    <button type="button" class="btn btn-outline-light my-btn-log">Вход</button>
+                                </div>
 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main style="min-height: calc(100vh - 25px);">
+        <div class="container">
+            <div class="row justify-content-end" style="padding-top: 2%;">
+                <div class="col-3">
+                    <p class="bold_header text-center">Популярные теги</p>
+                    <div class="container">
+                        <div class="row text-start" style="font-size: 18px; padding-top: 4%">
+                            <div class="col-6" style="color: blue">VK Education</div>
+                            <div class="col-3" style="color: rgb(56, 197, 150)">Chrome</div>
+                            <div class="col-3" style="color: rgb(46, 14, 105)">Golang</div>
+                        </div>
+                        <div class="row text-start" style="font-size: 18px; padding-top: 4%">
+                            <div class="col-4" style="color: rgb(226, 44, 44)">Java</div>
+                            <div class="col-8" style="color: rgb(41, 11, 11)">Машинное обучение</div>
+                        </div>
+                        <div class="row text-start" style="font-size: 18px; padding-top: 4%">
+                            <div class="col" style="color: rgb(145, 17, 219)">Алгоритмы</div>
+                            <div class="col" style="color: rgb(24, 202, 33)">C#</div>
+                            <div class="col" style="color: rgb(105, 58, 14)">ChatGPT</div>
                         </div>
                     </div>
 
+                    <div class="bold_header text-center" style="padding-top: 15%; padding-bottom: 3%">Лучшие участники
+                    </div>
+                    <ul style="font-size: 18px">
+                        <li style="padding-top: 1%">Джон фон Нейман</li>
+                        <li style="padding-top: 1%">Эдсгер Вибе Дейкстра</li>
+                        <li style="padding-top: 1%">Ада Лавлейс</li>
+                        <li style="padding-top: 1%">Гордон Мур</li>
+                        <li style="padding-top: 1%">Павел Дуров</li>
+                        <li style="padding-top: 1%">Стив Джобс</li>
+                        <li style="padding-top: 1%">Дженсен Хуанг</li>
+                        <li style="padding-top: 1%">Лиза Су</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </nav>
-</header>
-<main class="container  my-main" role="main">
-
-</main>
+    </main>
+</body>
 
 </html>
