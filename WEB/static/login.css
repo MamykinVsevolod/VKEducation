@@ -50,3 +50,7 @@
     bottom: 0;
     width: 100%;
 }
+
+.my-settings-log-reg {
+    margin-left: -40px !important;
+}
