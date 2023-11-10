@@ -13,23 +13,31 @@
     margin-left: 2px !important;
     margin-top: 5px !important;
     margin-bottom: 5px;
-    font-size: 13px;
+    font-size: 12px !important;
 }
 
 .my-name {
-    margin-left: -25px !important;
+    margin-left: -30px !important;
     margin-top: 8px;
     color: white;
 }
 
 .my-settings-log {
-    margin-left: -28px !important;
+    margin-left: -33px !important;
 }
 
-.my-link-settings {
+.my-btn-settings {
     color: blue;
+    font-size: 12px !important;
+    margin-top: -8px;
 }
 
-.my-link-log {
+.my-btn-log {
     color: blue;
+    font-size: 12px !important;
+    margin-top: -8px;
+}
+
+.my-main {
+    margin-top: 100px;
 }
