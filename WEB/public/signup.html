@@ -71,16 +71,14 @@
                     <div style="width: 350px; margin-top: 30px;">
                         <form>
                             <div class="mb-3">
-                                <label for="InputLogin" class="form-label">Логин</label>
-                                <input type="text" pattern="[A-Za-z]+" class="form-control" id="InputLogin"
-                                    name="InputLogin" placeholder="user" maxlength="50" required>
-                                <p style="font-size: 10px;">Формат: A-Z, a-z</p>
-                            </div>
-                            <div class="mb-3">
                                 <label for="InputEmail" class="form-label">Email</label>
                                 <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    class="form-control" id="InputEmail" name="InputEmail" placeholder="user@gmail.com"
-                                    maxlength="50" required>
+                                    class="form-control is-invalid" id="InputEmail" placeholder="user@gmail.com"
+                                    name="InputEmail" maxlength="50" required>
+                                <div class="invalid-feedback">
+                                    Ошибка ввода
+                                </div>
+                                <p style="font-size: 10px;">Формат: A-Z, a-z</p>
                             </div>
                             <div class="mb-3">
                                 <label for="InputName" class="form-label">Имя</label>
@@ -91,7 +89,7 @@
                             <div class="mb-3">
                                 <label for="InputPassword" class="form-label">Пароль</label>
                                 <input type="password" pattern="^[a-zA-Z0-9]{8,}" class="form-control"
-                                    id="InputPassword" name="InputPassword" maxlength="50" required>
+                                    name="InputPassword" id="InputPassword" maxlength="50" required>
                                 <p style="font-size: 10px;">Формат: A-Z, a-z; 0-9. Минимум 8 символов.</p>
                             </div>
                             <div class="mb-3">
@@ -109,7 +107,7 @@
                              <div id="TmpError" style="display:none; color: red;"> Ошибка при вводе данных </div>  -->
                             <!-- ПРОСТО ПРИМЕР, КАК ПО НАЖАТИИ КНОПКИ ВЫХОДИТ ОШИБКА.-->
                             <button type="submit" class="btn btn-primary">Войти</button>
-                            <div style="color: red;"> Ошибка при вводе данных </div>
+                            <!-- <div style="color: red;"> Ошибка при вводе данных </div> -->
                         </form>
                     </div>
                 </div>
