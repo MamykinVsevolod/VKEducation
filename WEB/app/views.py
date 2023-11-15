@@ -20,7 +20,7 @@ def paginate(objects, page, per_page=5):
 def index(request, page=1):
     # paginator = Paginator(QUESTIONS, 3)
     # page_items = paginator.page(1).object_list
-    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'page': page})
+    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), page: page})
 
 
 # return render(request, 'index.html', {'questions': QUESTIONS})
