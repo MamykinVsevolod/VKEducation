@@ -54,6 +54,15 @@
 body {
     height: 100%;
     width: 100%;
+    background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+    /*your background image*/
+    background-repeat: no-repeat;
+    /*we want to have one single image not a repeated one*/
+    background-size: cover;
+}
+.body2 {
+    height: 100%;
+    width: 100%;
     background-image: url(back-ground-all2.png);
     /*your background image*/
     background-repeat: no-repeat;

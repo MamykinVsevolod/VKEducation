@@ -10,6 +10,7 @@
         <a class="my-a-hot-questions" href="#"> Популярные вопросы</a>
     </div>
 </div>
+{% for question in questions %}
 <div class="row"
      style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px;">
     <div class="col-2">
@@ -31,18 +32,16 @@
     </div>
     <div class="col-10">
         <div class="row">
-            <a href="question.html" style="font-size: 20px; text-decoration: underline;"> Вопрос 1
+            <a href="{% url 'question' %}" style="font-size: 20px; text-decoration: underline;"> {{question.title}}
             </a>
         </div>
         <div class="row">
-            <div style="font-size: 15px;"> VK — это более 200 проектов и сервисов,
-                которыми пользуются миллионы. Ты можешь присоединиться к команде, которая их
-                создаёт. Познакомься с нашим офисом и посети виртуальную экскурсию.
+            <div style="font-size: 15px;"> {{question.content}}
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-4">
-                <a href="question.html" style="font-size: 15px; text-decoration: underline;">ответы
+                <a href="{% url 'question' %}" style="font-size: 15px; text-decoration: underline;">ответы
                     <span> (3)
                                         </span>
                 </a>
@@ -62,13 +61,12 @@
         </div>
     </div>
 </div>
-<div class="row"
+{% endfor %}
+<!-- <div class="row"
      style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px;">
     <div class="col-2">
-        <!-- <div class="row"> -->
         <img src="{% static '/avatar.png' %}" height="50px" width="50px"
              style="border: 1px solid black; object-fit: cover; margin-top: 30px; margin-bottom: 20px; margin-left: 10px;">
-        <!-- </div> -->
         <div class="row">
             <div class="col-2">
                 <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
@@ -83,7 +81,7 @@
     </div>
     <div class="col-10">
         <div class="row">
-            <a href="question.html" style="font-size: 20px; text-decoration: underline;"> Вопрос 2
+            <a href="{% url 'question' %}" style="font-size: 20px; text-decoration: underline;"> Вопрос 1
             </a>
         </div>
         <div class="row">
@@ -94,7 +92,7 @@
         </div>
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-4">
-                <a href="question.html" style="font-size: 15px; text-decoration: underline;">ответы
+                <a href="{% url 'question' %}" style="font-size: 15px; text-decoration: underline;">ответы
                     <span> (3)
                                         </span>
                 </a>
@@ -113,59 +111,7 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row"
-     style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px;">
-    <div class="col-2">
-        <!-- <div class="row"> -->
-        <img src="{% static '/avatar.png' %}" height="50px" width="50px"
-             style="border: 1px solid black; object-fit: cover; margin-top: 30px; margin-bottom: 20px; margin-left: 10px;">
-        <!-- </div> -->
-        <div class="row">
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
-            </div>
-            <div class="col-2">
-                <div style="font-size: 15px;">1</div>
-            </div>
-            <div class=" col-2">
-                <button type="submit" class="btn btn-primary my-btn-like">&#128077;</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-10">
-        <div class="row">
-            <a href="question.html" style="font-size: 20px; text-decoration: underline;"> Вопрос 3
-            </a>
-        </div>
-        <div class="row">
-            <div style="font-size: 15px;"> VK — это более 200 проектов и сервисов,
-                которыми пользуются миллионы. Ты можешь присоединиться к команде, которая их
-                создаёт. Познакомься с нашим офисом и посети виртуальную экскурсию.
-            </div>
-        </div>
-        <div class="row" style="margin-bottom: 20px;">
-            <div class="col-4">
-                <a href="question.html" style="font-size: 15px; text-decoration: underline;">ответы
-                    <span> (3)
-                                        </span>
-                </a>
-            </div>
-            <div class="col-1" style="padding-left: 0px;">
-                <div style="font-size: 15px;"> Теги:</div>
-            </div>
-            <div class="col-2">
-                <a href="#" style="font-size: 15px; text-decoration: underline;">
-                    VKeducation
-                </a>
-            </div>
-            <div class="col-2">
-                <a href="#" style="font-size: 15px; text-decoration: underline;"> Ios
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+</div> -->
 <div class="row" style="margin-top: 70px;">
     <nav>
         <ul class="pagination">
