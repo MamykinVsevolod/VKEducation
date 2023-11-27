@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Kotlin2</string>
+    <string name="api_url">https://trailapi-trailapi.p.rapidapi.com/trails</string>
+    <string name="loading">Loading…</string>
+    <string name="loading_error">Error loading data</string>
+    <string name="retry">Retry</string>
+</resources>
