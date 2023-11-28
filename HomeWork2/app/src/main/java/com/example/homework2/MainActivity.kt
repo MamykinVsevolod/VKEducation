@@ -2,7 +2,6 @@ package com.example.homework2
 
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -11,11 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,12 +20,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import androidx.compose.runtime.getValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.runtime.*
@@ -63,13 +56,7 @@ class MainActivity : ComponentActivity() {
             ConnectivityManager::class.java
         ) as ConnectivityManager
         setContent {
-            val isNetworkAvailable = remember {
-                mutableStateOf(
-                    connectivityManager.activeNetworkInfo?.isConnectedOrConnecting == true
-                )
-            }
-                ImageScreen(apiKey, connectivityManager)
-            //ImageScreen(apiKey)
+            ImageScreen(apiKey, connectivityManager)
         }
     }
 }
@@ -158,8 +145,6 @@ fun ImageScreen(apiKey: String, connectivityManager: ConnectivityManager) {
                     } else {
                         if (currentImageUrl.isNotEmpty()) {
                             BoxWithConstraints {
-                                val maxWidth = maxWidth
-                                val maxHeight = maxHeight
                                 Image(
                                     painter =
                                     rememberAsyncImagePainter(
