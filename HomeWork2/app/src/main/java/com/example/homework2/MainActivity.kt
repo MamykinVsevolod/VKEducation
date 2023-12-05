@@ -2,15 +2,23 @@ package com.example.homework2
 
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,6 +37,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -68,8 +77,8 @@ data class ApodResponse(
 interface ApiService {
     @GET("planetary/apod")
     suspend fun getApodImage(
-       @Query("api_key") apiKey: String,
-       @Query("date") date: String
+        @Query("api_key") apiKey: String,
+        @Query("date") date: String
     ): ApodResponse
 }
 
@@ -94,8 +103,8 @@ fun ImageScreen(apiKey: String, connectivityManager: ConnectivityManager) {
     val counter = rememberSaveable {
         mutableStateOf(0)
     }
-    val loading = remember { mutableStateOf(false) }
-    val isNetworkAvailable = remember {
+    val loading = rememberSaveable { mutableStateOf(false) }
+    val isNetworkAvailable = rememberSaveable {
         mutableStateOf(
             connectivityManager.activeNetworkInfo?.isConnectedOrConnecting == true
         )
@@ -118,50 +127,69 @@ fun ImageScreen(apiKey: String, connectivityManager: ConnectivityManager) {
                         loading.value = true
                     }
                     //Log.d("myTag", date.value[date.value.size - 1])
-                   // Log.d("myTag", imageUrl.value[imageUrl.value.size - 1])
+                    // Log.d("myTag", imageUrl.value[imageUrl.value.size - 1])
                 } catch (e: HttpException) {
                     //Log.d("myTag", "HttpException")
                     loading.value = true
                 } catch (e: Exception) {
-                   // Log.d("myTag", "Exception")
+                    // Log.d("myTag", "Exception")
                     loading.value = true
                 }
             }
             if (imageUrl.value.size - 1 >= 0) {
+
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    //contentAlignment = Alignment.Center
                 ) {
                     val currentImageUrl = imageUrl.value[imageUrl.value.size - 1]
-                    if (loading.value) {
-                        Column(
+                    if (false) {
+                        /*Column(
                             modifier = Modifier.fillMaxSize(),
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             CircularProgressIndicator()
                             Text(text = "Ошибка загрузки. Нажмите кнопку...")
-                        }
+                        } */
                     } else {
-                        if (currentImageUrl.isNotEmpty()) {
-                            BoxWithConstraints {
-                                Image(
-                                    painter =
-                                    rememberAsyncImagePainter(
-                                        ImageRequest.Builder(LocalContext.current)
-                                            .data(data = currentImageUrl)
-                                            .apply(block = fun ImageRequest.Builder.() {
-                                                crossfade(true) // включаем плавное переключение между изображениями
-                                            }).build()
-                                    ),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .fillMaxSize(),
-                                    contentScale = ContentScale.Fit
-                                )
+                        Column (
+                            modifier = Modifier.verticalScroll(rememberScrollState())
+                                .align(Alignment.TopCenter)
+                        ) {
+                            for (item in imageUrl.value) {
+                                if (item.isNotEmpty()) {
+                                    Log.d("myTag", imageUrl.value[imageUrl.value.size - 1])
+                                    BoxWithConstraints (
+                                        modifier = Modifier
+                                            .padding(10.dp)
+                                            .size(250.dp, 250.dp)
+                                            .clickable(onClick = {
+                                                counter.value += 1;
+                                            })
+                                    ) {
+                                        Image(
+                                            painter =
+                                            rememberAsyncImagePainter(
+                                                ImageRequest.Builder(LocalContext.current)
+                                                    .data(data = item)
+                                                    .apply(block = fun ImageRequest.Builder.() {
+                                                        crossfade(true) // включаем плавное переключение между изображениями
+                                                    }).build()
+                                            ),
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .fillMaxSize(),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                    }
+
+                                } else {
+                                    CircularProgressIndicator()
+                                    Text(text = "Ошибка загрузки. Нажмите кнопку...")
+                                }
                             }
-                        } else {
-                            CircularProgressIndicator()
                         }
                     }
                 }
@@ -287,4 +315,76 @@ fun ImageScreen(apiKey: String) {
         }
     }
     */
+/*
+LaunchedEffect(counter.value) {
+                try {
+                    date.value += generateRandomDate()
+                    Log.d("myTag", "date: ${date.value[date.value.size - 1]}")
+                    val apodResponse = withContext(Dispatchers.IO) {
+                        RetrofitClient.apiService.getApodImage(
+                            apiKey,
+                            date.value[date.value.size - 1]
+                        )
+                    }
+                    imageUrl.value += apodResponse.url
+                    loading.value = false
+                    if (!imageUrl.value[imageUrl.value.size - 1].contains("apod.nasa.gov/apod")) {
+                        loading.value = true
+                    }
+                    Log.d("myTag", imageUrl.value.toString())
+                    //Log.d("myTag", date.value[date.value.size - 1])
+                   // Log.d("myTag", imageUrl.value[imageUrl.value.size - 1])
+                } catch (e: HttpException) {
+                    Log.d("myTag", "HttpException")
+                    loading.value = true
+                } catch (e: Exception) {
+                    Log.d("myTag", e.message.toString())
+                    loading.value = true
+                }
+            }
+            Log.d("myTag", "index: ${imageUrl.value}")
+            if (imageUrl.value.size - 1 >= 0) {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.92f)
+                ) {
+                    items(imageUrl.value.size) { index ->
 
+                        //Log.d("myTag", "index: ${index}")
+                        Log.d("myTag", "imageUrl: ${imageUrl.value[index]}")
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (imageUrl.value[index].isNotEmpty()) {
+                                BoxWithConstraints {
+                                    val maxWidth = maxWidth
+                                    val maxHeight = maxHeight
+                                    val painter = rememberAsyncImagePainter(
+                                        ImageRequest.Builder(LocalContext.current).data(data = imageUrl.value[index])
+                                            .apply(block = fun ImageRequest.Builder.() {
+                                                crossfade(true) // включаем плавное переключение между изображениями
+                                            }).build()
+                                    )
+                                    when(painter.state){
+                                        AsyncImagePainter.State.Empty -> {}
+                                        is AsyncImagePainter.State.Loading -> {
+                                            CircularProgressIndicator()}
+                                        is AsyncImagePainter.State.Success -> Image(
+                                            painter = painter// включаем плавное переключение между изображениями
+                                            ,
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .fillMaxSize(),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        is AsyncImagePainter.State.Error -> Text(text = (painter.state as AsyncImagePainter.State.Error).result.toString())
+                                    }
+                                }
+                            } else {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    }
+                } */
