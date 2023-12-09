@@ -39,6 +39,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import retrofit2.HttpException
@@ -183,6 +184,28 @@ fun ImageScreen(apiKey: String, connectivityManager: ConnectivityManager) {
                                                 .fillMaxSize(),
                                             contentScale = ContentScale.Fit
                                         )
+                                        /*val maxWidth = maxWidth
+                                        val maxHeight = maxHeight
+                                        val painter = rememberAsyncImagePainter(
+                                            ImageRequest.Builder(LocalContext.current).data(data = item)
+                                                .apply(block = fun ImageRequest.Builder.() {
+                                                    crossfade(true) // включаем плавное переключение между изображениями
+                                                }).build()
+                                        )
+                                        when(painter.state){
+                                            AsyncImagePainter.State.Empty -> {}
+                                            is AsyncImagePainter.State.Loading -> {
+                                                CircularProgressIndicator()}
+                                            is AsyncImagePainter.State.Success -> Image(
+                                                painter = painter// включаем плавное переключение между изображениями
+                                                ,
+                                                contentDescription = null,
+                                                modifier = Modifier
+                                                    .fillMaxSize(),
+                                                contentScale = ContentScale.Fit
+                                            )
+                                            is AsyncImagePainter.State.Error -> Text(text = (painter.state as AsyncImagePainter.State.Error).result.toString())
+                                        } */
                                     }
 
                                 } else {
