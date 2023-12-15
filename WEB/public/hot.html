@@ -3,11 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-5">
-        <h2><strong>Новые вопросы</strong></h2>
-    </div>
-    <div class="col-5" style="display: flex;
-                        align-items: center;">
-        <a class="my-a-hot-questions" href="{% url 'hot' page=1 %}"> Популярные вопросы &#128293;</a>
+        <h2><strong>Популярные вопросы &#128293;</strong></h2>
     </div>
 </div>
 {% for question in questions %}
@@ -67,27 +63,27 @@
             {% firstof paginator.num_pages as last %}
             {% if questions.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=1 %}">
+                <a class="page-link" href="{% url 'hot' page=1 %}">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=questions.previous_page_number %}">
+                <a class="page-link" href="{% url 'hot' page=questions.previous_page_number %}">
                     <span aria-hidden="true">&lt;</span>
                 </a>
             </li>
             {% endif %}
             {% if questions.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=questions.previous_page_number %}">
+                <a class="page-link" href="{% url 'hot' page=questions.previous_page_number %}">
                     <span aria-hidden="true">{{questions.previous_page_number}}</span>
                 </a>
             </li>
             {% endif %}
-            <li class="page-item"><a class="page-link" href="{% url 'index' page=questions.number %}" style="color: black"> {{questions.number}} </a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'hot' page=questions.number %}" style="color: black"> {{questions.number}} </a></li>
             {% if questions.has_next %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=questions.next_page_number %}">
+                <a class="page-link" href="{% url 'hot' page=questions.next_page_number %}">
                     <span aria-hidden="true">{{questions.next_page_number}}</span>
                 </a>
             </li>
@@ -96,16 +92,16 @@
             <li class="page-item"><a class="page-link" > ... </a></li>
             {% endif %}
             {% if last|add:'-1' != questions.number and paginator.num_pages != questions.number %}
-            <li class="page-item"><a class="page-link" href="{% url 'index' page=paginator.num_pages %}"> {{paginator.num_pages}} </a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'hot' page=paginator.num_pages %}"> {{paginator.num_pages}} </a></li>
             {% endif %}
             {% if questions.has_next %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=questions.next_page_number %}">
+                <a class="page-link" href="{% url 'hot' page=questions.next_page_number %}">
                     <span aria-hidden="true">&gt;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=paginator.num_pages %}">
+                <a class="page-link" href="{% url 'hot' page=paginator.num_pages %}">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
@@ -116,6 +112,6 @@
 </div>
 {% endblock %}
 {% block main_css_file %}
-<link rel="stylesheet" href="{% static '/index.css' %}">
+<link rel="stylesheet" href="{% static '/hot.css' %}">
 {% endblock %}
 <!--href="/question/{{question.id}}"-->

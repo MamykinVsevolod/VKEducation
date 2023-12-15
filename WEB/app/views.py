@@ -16,6 +16,14 @@ ANSWERS = [
     } for i in range(50)
 ]
 
+HOT_QUESTIONS = [
+    {
+        'id': i,
+        'title': f'Вопрос {i*i}',
+        'content': 'VK — это более 200 проектов и сервисов, которыми пользуются миллионы. Ты можешь присоединиться к команде, которая их создаёт. Познакомься с нашим офисом и посети виртуальную экскурсию.'
+    } for i in range(20)
+]
+
 
 def paginate(objects, page, per_page=5):
     paginator = Paginator(objects, per_page)
@@ -37,7 +45,9 @@ def index(request, page=1):
     return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'paginator': get_paginator(QUESTIONS)})
 
 
-# return render(request, 'index.html', {'questions': QUESTIONS})
+def hot(request, page=1):
+    return render(request, 'hot.html',
+                  {'questions': paginate(HOT_QUESTIONS, page), 'paginator': get_paginator(HOT_QUESTIONS)})
 
 
 def question(request, question_id, page=1):
