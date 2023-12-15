@@ -62,73 +62,63 @@
     </div>
 </div>
 {% endfor %}
-<!-- <div class="row"
-     style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px;">
-    <div class="col-2">
-        <img src="{% static '/avatar.png' %}" height="50px" width="50px"
-             style="border: 1px solid black; object-fit: cover; margin-top: 30px; margin-bottom: 20px; margin-left: 10px;">
-        <div class="row">
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
-            </div>
-            <div class="col-2">
-                <div style="font-size: 15px;">1</div>
-            </div>
-            <div class=" col-2">
-                <button type="submit" class="btn btn-primary my-btn-like">&#128077;</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-10">
-        <div class="row">
-            <a href="#" style="font-size: 20px; text-decoration: underline;"> Вопрос 1
-            </a>
-        </div>
-        <div class="row">
-            <div style="font-size: 15px;"> VK — это более 200 проектов и сервисов,
-                которыми пользуются миллионы. Ты можешь присоединиться к команде, которая их
-                создаёт. Познакомься с нашим офисом и посети виртуальную экскурсию.
-            </div>
-        </div>
-        <div class="row" style="margin-bottom: 20px;">
-            <div class="col-4">
-                <a href="#" style="font-size: 15px; text-decoration: underline;">ответы
-                    <span> (3)
-                                        </span>
-                </a>
-            </div>
-            <div class="col-1" style="padding-left: 0px;">
-                <div style="font-size: 15px;"> Теги:</div>
-            </div>
-            <div class="col-2">
-                <a href="#" style="font-size: 15px; text-decoration: underline;">
-                    VKeducation
-                </a>
-            </div>
-            <div class="col-2">
-                <a href="#" style="font-size: 15px; text-decoration: underline;"> Ios
-                </a>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="row" style="margin-top: 70px;">
     <nav>
         <ul class="pagination">
-            <!-- <li class="page-item">
-                <a class="page-link" href="#">
+            {% firstof paginator.num_pages as last %}
+            {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'index' page=questions.previous_page_number %}">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
-            </li> -->
-            <li class="page-item"><a class="page-link" href="/{{1}}">1</a></li>
-            <li class="page-item"><a class="page-link" href="/{{2}}">2</a></li>
-            <li class="page-item"><a class="page-link" href="/{{3}}">3</a></li>
-            <!-- <li class="page-item"><a class="page-link" href="/{{4}}">..</a></li> -->
-            <!--<li class="page-item">
-                <a class="page-link" href="/{{page}}">
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'index' page=1 %}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            <!-- {% for my_page in paginator %}
+            <li class="page-item"><a class="page-link" href="{% url 'index' page=my_page.number %}"> {{my_page.number}} </a></li>
+            {% endfor %} -->
+            {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'index' page=questions.previous_page_number %}">
+                    <span aria-hidden="true">{{questions.previous_page_number}}</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="{% url 'index' page=questions.number %}" style="color: black"> {{questions.number}} </a></li>
+            {% if questions.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'index' page=questions.next_page_number %}">
+                    <span aria-hidden="true">{{questions.next_page_number}}</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if paginator.num_pages != questions.number and last|add:'-1' != questions.number and last|add:'-2' != questions.number %}
+            <li class="page-item"><a class="page-link" > ... </a></li>
+            {% endif %}
+            {% if last|add:'-1' != questions.number and paginator.num_pages != questions.number %}
+            <li class="page-item"><a class="page-link" href="{% url 'index' page=paginator.num_pages %}"> {{paginator.num_pages}} </a></li>
+            {% endif %}
+            {% if questions.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'index' page=questions.next_page_number %}">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
-            </li> -->
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="{%url 'index' page=questions.number %}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            <!-- <li class="page-item"><a class="page-link" href="/{{1}}">1</a></li>
+            <li class="page-item"><a class="page-link" href="/{{2}}">2</a></li>
+            <li class="page-item"><a class="page-link" href="/{{3}}">3</a></li> -->
         </ul>
     </nav>
 </div>
