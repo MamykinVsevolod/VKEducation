@@ -72,16 +72,7 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="{% url 'index' page=1 %}">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
             {% endif %}
-            <!-- {% for my_page in paginator %}
-            <li class="page-item"><a class="page-link" href="{% url 'index' page=my_page.number %}"> {{my_page.number}} </a></li>
-            {% endfor %} -->
             {% if questions.has_previous %}
             <li class="page-item">
                 <a class="page-link" href="{% url 'index' page=questions.previous_page_number %}">
@@ -109,16 +100,7 @@
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="{%url 'index' page=questions.number %}">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
             {% endif %}
-            <!-- <li class="page-item"><a class="page-link" href="/{{1}}">1</a></li>
-            <li class="page-item"><a class="page-link" href="/{{2}}">2</a></li>
-            <li class="page-item"><a class="page-link" href="/{{3}}">3</a></li> -->
         </ul>
     </nav>
 </div>
