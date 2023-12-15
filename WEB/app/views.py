@@ -10,6 +10,12 @@ QUESTIONS = [
     } for i in range(50)
 ]
 
+ANSWERS = [
+    {
+        'content': 'VK — это более 200 проектов и сервисов, которыми пользуются миллионы. Ты можешь присоединиться к команде, которая их создаёт. Познакомься с нашим офисом и посети виртуальную экскурсию.'
+    } for i in range(50)
+]
+
 
 def paginate(objects, page, per_page=5):
     paginator = Paginator(objects, per_page)
@@ -19,7 +25,7 @@ def paginate(objects, page, per_page=5):
     return obj
 
 
-def all_pages(objects, page, per_page=5):
+def get_paginator(objects, per_page=5):
     paginator = Paginator(objects, per_page)
     return paginator
 
@@ -28,15 +34,15 @@ def index(request, page=1):
     # paginator = Paginator(QUESTIONS, 3)
     # page_items = paginator.page(1).object_list
     """return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), page: page})"""
-    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'paginator': all_pages(QUESTIONS, page)})
+    return render(request, 'index.html', {'questions': paginate(QUESTIONS, page), 'paginator': get_paginator(QUESTIONS)})
 
 
 # return render(request, 'index.html', {'questions': QUESTIONS})
 
 
-def question(request, question_id):
+def question(request, question_id, page=1):
     item = QUESTIONS[question_id]
-    return render(request, 'question.html', {'question': item})
+    return render(request, 'question.html', {'question': item, 'answers': paginate(ANSWERS, page), 'paginator': get_paginator(ANSWERS)})
 
 
 def ask(request):

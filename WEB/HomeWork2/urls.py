@@ -21,7 +21,7 @@ from app import views
 urlpatterns = [
     path('', views.index, name='start'),
     path('<int:page>', views.index, name='index'),
-    path('question/<int:question_id>', views.question, name='question'),
+    path('question/<int:question_id>/<int:page>', views.question, name='question'),
     path('ask', views.ask, name='ask'),
     path('login', views.login, name='login'),
     path('settings', views.settings, name='settings'),
