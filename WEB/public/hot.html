@@ -2,8 +2,12 @@
 {% load static %}
 {% block content %}
 <div class="row">
-    <div class="col-5">
+    <div class="col-7">
         <h2><strong>Популярные вопросы &#128293;</strong></h2>
+    </div>
+    <div class="col-5" style="display: flex;
+                        align-items: center;">
+        <a class="my-a-hot-questions" href="{% url 'index' page=1 %}"> Все вопросы &#127757;</a>
     </div>
 </div>
 {% for question in questions %}
